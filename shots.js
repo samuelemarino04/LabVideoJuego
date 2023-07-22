@@ -23,8 +23,8 @@ class Shots {
 
         //Tamaño de la bala
         this.shotSize = {
-            w: 8,
-            h: 20
+            w: 12,
+            h: 19
         }
 
         //invocador que conecta el juego
@@ -38,6 +38,7 @@ class Shots {
         this.shotElement = document.createElement('div')
 
         this.shotElement.style.position = "absolute"
+        this.shotElement.style.borderRadius = "50%"
         this.shotElement.style.backgroundColor = `red`
         this.shotElement.style.width = `${this.shotSize.w}px`
         this.shotElement.style.height = `${this.shotSize.h}px`

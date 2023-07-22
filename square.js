@@ -44,9 +44,10 @@ class Square {
     //Invocamos dentro de el metodo move la updatePosition
     move() {
 
-
-        this.shots.forEach(shot => shot.shotMove())
         this.updatePosition()
+        this.shots.forEach(shot => shot.shotMove())
+        this.clearShoot()
+
 
     }
 
@@ -73,10 +74,17 @@ class Square {
 
     }
 
+    clearShoot() {
 
-    // drawAll() {
-    //     this.shot.forEach(eachCircle => eachCircle.move())
-    // }
 
+        this.shots.forEach((shoot, idx) => {
+
+            if (shoot.shotPos.top < 0) {
+
+                shoot.shotElement.remove()
+                this.shots.splice(idx, 1)
+            }
+        })
+    }
 }
 
