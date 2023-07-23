@@ -10,7 +10,9 @@ const Game = {
 
     },
     square: [],
-    enemies: [],
+    enemyNum: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    enemiesArray: [],
+    positionLeft: undefined,
     keys: { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', SPACE: 'Space' },
 
     //Metermos el fondo de juego por ahora solo es un color 
@@ -44,8 +46,10 @@ const Game = {
         document.onkeydown = event => {
             switch (event.code) {
                 case this.keys.LEFT:
+
                     if (this.square.squarePos.left > window.innerWidth - window.innerWidth) {
                         this.square.moveLeft()
+
                     }
                     break;
 
@@ -70,8 +74,27 @@ const Game = {
 
     createElements() {
         this.square = new Square(this.gameScreen, this.gameSize, this.keys, this.squareSize)
-        this.enemies = new Enemies(this.gameScreen, this.gameSize)
+
+
+
+        for (let i = 0; i < this.enemyNum.length; i++) {
+            if (this.enemyNum[i] === 1) {
+                this.positionLeft = i * 30
+
+                this.enemiesArray.push(new Enemies(this.gameScreen, this.gameSize, this.positionLeft))
+
+            }
+
+
+
+        }
+
+
     },
+
+
+
+
 
     gameLoop() {
         this.drawAll()
