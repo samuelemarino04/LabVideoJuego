@@ -10,9 +10,17 @@ const Game = {
 
     },
     square: [],
+    enemyNum2: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,],
+    enemyNum1: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,],
     enemyNum: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,],
+
     enemiesArray: [],
+    enemiesArray1: [],
+    enemiesArray2: [],
+
+    spaceEnemy: 55,
     positionLeft: undefined,
+    positionTop: undefined,
     keys: { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', SPACE: 'Space' },
 
     //Metermos el fondo de juego por ahora solo es un color 
@@ -75,20 +83,42 @@ const Game = {
     createElements() {
         this.square = new Square(this.gameScreen, this.gameSize, this.keys, this.squareSize)
         this.enemiesArray = []
-
+        this.enemiesArray1 = []
 
         for (let i = 0; i < this.enemyNum.length; i++) {
             if (this.enemyNum[i] === 1) {
-                this.positionLeft = i * 30
+                this.positionLeft = i * 50
+                this.positionTop = 0
 
-                this.enemiesArray.push(new Enemies(this.gameScreen, this.gameSize, this.positionLeft))
+                this.enemiesArray.push(new Enemies(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
 
             }
 
+        }
 
+
+        for (let i = 0; i < this.enemyNum.length; i++) {
+            if (this.enemyNum1[i] === 1) {
+                this.positionLeft = i * 50
+                this.positionTop = this.spaceEnemy
+
+                this.enemiesArray1.push(new Enemies(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
+
+            }
 
         }
 
+
+        for (let i = 0; i < this.enemyNum.length; i++) {
+            if (this.enemyNum2[i] === 1) {
+                this.positionLeft = i * 50
+                this.positionTop = this.spaceEnemy + this.spaceEnemy
+
+                this.enemiesArray2.push(new Enemies(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
+
+            }
+
+        }
 
     },
 
@@ -104,6 +134,8 @@ const Game = {
     drawAll() {
         this.square.move()
         this.enemiesArray.forEach(enemy => enemy.move())
+        this.enemiesArray1.forEach(enemy => enemy.move())
+        this.enemiesArray2.forEach(enemy => enemy.move())
     }
 }
 

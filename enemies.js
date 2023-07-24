@@ -1,5 +1,5 @@
 class Enemies {
-    constructor(gameScreen, gameSize, positionLeft) {
+    constructor(gameScreen, gameSize, positionLeft, positionTop) {
         this.gameScreen = gameScreen
         this.gameSize = gameSize
 
@@ -11,12 +11,12 @@ class Enemies {
 
         this.enemiesPos = {
             left: positionLeft,
-            top: gameSize.h - gameSize.h + 40,
+            top: positionTop//gameSize.h - gameSize.h + 40,
 
         }
 
         this.enemiesVel = {
-            left: 10,
+            left: 3,
             top: 0
         }
 
@@ -41,7 +41,7 @@ class Enemies {
 
     move() {
 
-        this.enemiesPos.left += this.enemiesVel.left
+        this.enemiesPos.left -= this.enemiesVel.left
         if (this.enemiesPos.left > this.gameSize.w / 2 - this.enemiesSize.w || this.enemiesPos.left < 0) {
             this.enemiesVel.left *= -1
             if (this.enemiesPos.left = this.gameSize.w / 2 - this.enemiesSize.w) {
