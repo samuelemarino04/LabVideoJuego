@@ -74,7 +74,7 @@ const Game = {
 
     createElements() {
         this.square = new Square(this.gameScreen, this.gameSize, this.keys, this.squareSize)
-
+        this.enemiesArray = []
 
 
         for (let i = 0; i < this.enemyNum.length; i++) {
@@ -103,6 +103,7 @@ const Game = {
 
     drawAll() {
         this.square.move()
+        this.enemiesArray.forEach(enemy => enemy.move())
     }
 }
 
