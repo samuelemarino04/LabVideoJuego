@@ -10,7 +10,7 @@ const Game = {
 
     },
     square: [],
-    enemyNum: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    enemyNum: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,],
     enemiesArray: [],
     positionLeft: undefined,
     keys: { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', SPACE: 'Space' },

@@ -79,7 +79,7 @@ class Square {
 
         this.shots.forEach((shoot, idx) => {
 
-            if (shoot.shotPos.top < 0) {
+            if (shoot.shotPos.top < 0 || shoot.shotPos.top <= this.enemies) {
 
                 shoot.shotElement.remove()
                 this.shots.splice(idx, 1)

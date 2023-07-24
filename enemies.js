@@ -16,7 +16,8 @@ class Enemies {
         }
 
         this.enemiesVel = {
-            left: 1
+            left: 10,
+            top: 0
         }
 
         this.init()
@@ -40,20 +41,15 @@ class Enemies {
 
     move() {
 
-        if (this.enemiesPos.left < this.gameSize.w / 2 - this.enemiesSize.w) {
-            this.enemiesPos.left += this.enemiesVel.left
-        }
-        // else if (this.enemiesPos.left  this.gameSize.w / 2 - this.enemiesSize.w) {
-        //     this.enemiesPos.left -= this.enemiesVel.left
-        // }
-        // else if (this.enemiesPos.left = this.gameSize.w / 2 - this.enemiesSize.w) {
-        //     this.enemiesPos.top += 1
+        this.enemiesPos.left += this.enemiesVel.left
+        if (this.enemiesPos.left > this.gameSize.w / 2 - this.enemiesSize.w || this.enemiesPos.left < 0) {
+            this.enemiesVel.left *= -1
+            if (this.enemiesPos.left = this.gameSize.w / 2 - this.enemiesSize.w) {
+                this.enemiesPos.top += this.enemiesSize.h
+            }
 
-        //     // this.enemiesPos.left -= this.enemiesVel.left
-        // }
-        // else if (this.enemiesPos.top = this.enemiesSize.h) {
-        //     this.enemiesPos.left -= this.enemiesVel.left
-        // }
+        }
+
         this.updatePosition()
     }
 
@@ -61,10 +57,6 @@ class Enemies {
         this.enemiesElement.style.left = `${this.enemiesPos.left}px`
         this.enemiesElement.style.top = `${this.enemiesPos.top}px`
     }
-
-
-
-
 }
 
 
