@@ -10,13 +10,13 @@ const Game = {
 
     },
     square: [],
-    enemyNum2: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,],
-    enemyNum1: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,],
-    enemyNum: [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,],
+    enemyNum2: [0, 1, 0, 2, 0, 1, 0, 2, 0, 1,],
+    enemyNum1: [0, 1, 0, 1, 0, 2, 0, 1, 0, 1,],
+    enemyNum: [0, 1, 0, 2, 0, 1, 0, 2, 0, 1,],
 
-    enemiesArray: [],
-    enemiesArray1: [],
     enemiesArray2: [],
+    enemiesArray1: [],
+    enemiesArray: [],
 
     spaceEnemy: 55,
     positionLeft: undefined,
@@ -82,45 +82,74 @@ const Game = {
 
     createElements() {
         this.square = new Square(this.gameScreen, this.gameSize, this.keys, this.squareSize)
-        this.enemiesArray = []
-        this.enemiesArray1 = []
+
 
         for (let i = 0; i < this.enemyNum.length; i++) {
+
             if (this.enemyNum[i] === 1) {
                 this.positionLeft = i * 50
                 this.positionTop = 0
 
                 this.enemiesArray.push(new Enemies(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
 
+            } else if (this.enemyNum[i] === 2) {
+
+                this.positionLeft = i * 50
+                this.positionTop = 0
+
+                this.enemiesArray.push(new Enemies2(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
+
             }
 
         }
 
 
-        for (let i = 0; i < this.enemyNum.length; i++) {
+
+
+
+
+
+        for (let i = 0; i < this.enemyNum1.length; i++) {
             if (this.enemyNum1[i] === 1) {
                 this.positionLeft = i * 50
                 this.positionTop = this.spaceEnemy
 
                 this.enemiesArray1.push(new Enemies(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
 
+            } else if (this.enemyNum1[i] === 2) {
+
+                this.positionLeft = i * 50
+                this.positionTop = this.spaceEnemy
+
+                this.enemiesArray1.push(new Enemies2(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
+
+
             }
 
         }
 
 
-        for (let i = 0; i < this.enemyNum.length; i++) {
+        for (let i = 0; i < this.enemyNum2.length; i++) {
             if (this.enemyNum2[i] === 1) {
                 this.positionLeft = i * 50
                 this.positionTop = this.spaceEnemy + this.spaceEnemy
 
                 this.enemiesArray2.push(new Enemies(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
 
+            } else if (this.enemyNum2[i] === 2) {
+
+                this.positionLeft = i * 50
+                this.positionTop = this.spaceEnemy + this.spaceEnemy
+
+                this.enemiesArray2.push(new Enemies2(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop))
+
             }
 
         }
 
     },
+
+
 
 
 
