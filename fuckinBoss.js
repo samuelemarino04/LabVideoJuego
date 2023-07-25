@@ -12,13 +12,13 @@ class EnemiesBoss {
 
         this.enemiesPos = {
             left: positionLeft / 2 - 300,
-            top: positionTop - 600,  //gameSize.h - gameSize.h + 40,
+            top: -600,  //gameSize.h - gameSize.h + 40,
 
         }
 
         this.enemiesVel = {
             left: 0,
-            top: 3
+            top: 1
         }
         this.counter = 0
         this.init()
@@ -27,14 +27,14 @@ class EnemiesBoss {
 
     init() {
 
-        this.enemiesElement = document.createElement('img')
+        this.enemiesElement = document.createElement('div')
 
         this.enemiesElement.style.position = 'absolute'
         this.enemiesElement.style.width = `${this.enemiesSize.w}px`
         this.enemiesElement.style.height = `${this.enemiesSize.h}px`
         this.enemiesElement.style.left = `${this.enemiesPos.left}px`
         this.enemiesElement.style.top = `${this.enemiesPos.top}px`
-        this.enemiesElement.src = 'img/tikitiki.jpg'
+        this.enemiesElement.style.backgroundColor = 'red'
 
 
 
