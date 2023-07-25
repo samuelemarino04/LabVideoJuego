@@ -16,7 +16,7 @@ class Enemies {
         }
 
         this.enemiesVel = {
-            left: 3,
+            left: 10,
             top: 0
         }
 
@@ -43,14 +43,13 @@ class Enemies {
     move() {
 
         this.enemiesPos.left -= this.enemiesVel.left
-        if (this.enemiesPos.left > this.gameSize.w / 2 - this.enemiesSize.w || this.enemiesPos.left < 0) {
+        if (this.enemiesPos.left > this.gameSize.w / 2 - this.enemiesSize.w || this.enemiesPos.left < 0 - this.enemiesSize.w) {
             this.enemiesVel.left *= -1
             if (this.enemiesPos.left = this.gameSize.w / 2 - this.enemiesSize.w) {
                 this.enemiesPos.top += this.enemiesSize.h
             }
 
         }
-
         this.updatePosition()
     }
 

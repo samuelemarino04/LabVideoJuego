@@ -7,12 +7,12 @@ class Square {
 
         //Tamaño del player
         this.squareSize = {
-            w: 150,
+            w: 110,
             h: 30
         }
         //Posiciòn inicial del player
         this.squarePos = {
-            left: 10,
+            left: gameSize.w / 5,
             top: gameSize.h - this.squareSize.h - 20
 
         }
@@ -20,8 +20,12 @@ class Square {
         this.squareVel = {
             left: 30,
         }
+
+
+
         // Creacion del metodo init
         this.init()
+
     }
 
 
@@ -74,16 +78,23 @@ class Square {
 
     }
 
+
+
+
     clearShoot() {
 
 
         this.shots.forEach((shoot, idx) => {
 
-            if (shoot.shotPos.top < 0 || shoot.shotPos.top <= this.enemies) {
+
+            if (shoot.shotPos.top < 0) {
 
                 shoot.shotElement.remove()
                 this.shots.splice(idx, 1)
+
             }
+
+
         })
     }
 }
