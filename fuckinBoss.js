@@ -11,8 +11,8 @@ class EnemiesBoss {
         }
 
         this.enemiesPos = {
-            left: gameSize.w / 8,
-            top: -600,  //gameSize.h - gameSize.h + 40,
+            left: gameSize.w / 9,
+            top: -1800,  //gameSize.h - gameSize.h + 40,
 
         }
 
@@ -27,14 +27,14 @@ class EnemiesBoss {
 
     init() {
 
-        this.enemiesElement = document.createElement('div')
+        this.enemiesElement = document.createElement('img')
 
         this.enemiesElement.style.position = 'absolute'
         this.enemiesElement.style.width = `${this.enemiesSize.w}px`
         this.enemiesElement.style.height = `${this.enemiesSize.h}px`
         this.enemiesElement.style.left = `${this.enemiesPos.left}px`
         this.enemiesElement.style.top = `${this.enemiesPos.top}px`
-        this.enemiesElement.style.backgroundColor = 'red'
+        this.enemiesElement.src = 'img/IMG_9576 (1).png'
 
 
 

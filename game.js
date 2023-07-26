@@ -2,6 +2,7 @@
 const Game = {
 
     gameScreen: document.querySelector("#game-screen"),
+    bodyScreen: document.querySelector("#body-screen"),
     gameSize: {
         w: window.innerWidth,
         h: window.innerHeight,
@@ -20,11 +21,13 @@ const Game = {
     enemiesArray1: [],
     enemiesArray: [],
     framesCounter: 0,
-    bossLife: 20,
-    playerLifes: 3,
+    bossLife: 50,
+    numLifes: [0, 0, 0],
+    playerLifes: [],
     spaceEnemy: 55,
     positionLeft: undefined,
     positionTop: undefined,
+    lifeLeft: undefined,
     keys: { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', SPACE: 'Space' },
 
     //Metermos el fondo de juego por ahora solo es un color 
@@ -117,6 +120,18 @@ const Game = {
         this.boss = new EnemiesBoss(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop)
         this.square = new Square(this.gameScreen, this.gameSize, this.keys, this.squareSize)
 
+
+        //createLives
+        for (let i = 0; i < this.numLifes.length; i++) {
+            if (this.numLifes[i] === 0) {
+                this.lifeLeft = i * 50
+
+                this.playerLifes.push(new Life(this.gameScreen, this.gameSize, this.lifeLeft))
+            }
+        }
+
+
+        //createEnemies
         for (let i = 0; i < this.enemyNum.length; i++) {
 
             if (this.enemyNum[i] === 1) {
@@ -193,7 +208,7 @@ const Game = {
                     eachEnemy.enemiesPos.top < eachShot.shotPos.top + eachShot.shotSize.h &&
                     eachEnemy.enemiesSize.h + eachEnemy.enemiesPos.top > eachShot.shotPos.top
                 ) {
-
+                    console.log(this.playerLifes)
                     eachEnemy.enemyLive = false
 
                     eachEnemy.enemiesElement.remove()
@@ -255,7 +270,7 @@ const Game = {
         this.enemiesArray.forEach((eachEnemy) => {
 
             eachEnemy.enemiesShot.forEach((eachShot, idx) => {
-                //console.log("balas de enemigo", eachEnemy.enemiesShot)
+
 
                 if (this.square.squarePos.left < eachShot.shotPos.left + eachShot.shotSize.w &&
                     this.square.squarePos.left + this.square.squareSize.w > eachShot.shotPos.left &&
@@ -264,11 +279,15 @@ const Game = {
                 ) {
 
 
-                    this.playerLifes = this.playerLifes - 1
-                    eachShot.enemiesShotElement.remove()
+                    this.playerLifes.forEach((eachLife) => {
+                        eachLife.lifeElement.remove()
+                    })
+                    this.playerLifes.pop()
 
+
+                    eachShot.enemiesShotElement.remove()
                     eachEnemy.enemiesShot.splice(idx, 1)
-                    if (this.playerLifes === 0) {
+                    if (this.playerLifes.length === 0) {
                         this.gameOver()
                     }
                 }
@@ -294,7 +313,7 @@ const Game = {
                 ) {
 
 
-                    this.playerLifes = this.playerLifes - 1
+                    this.playerLifes.pop()
                     eachShot.enemiesShotElement.remove()
 
                     eachEnemy.enemiesShot.splice(idx, 1)
@@ -372,7 +391,7 @@ const Game = {
     },
 
     gameWon() {
-        console.log('congrants,i am soo happy!!')
+        alert('congrants,i am soo happy!!')
     },
 
 

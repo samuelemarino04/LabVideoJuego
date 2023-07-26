@@ -39,7 +39,7 @@ class Square {
         this.squareElement.style.width = `${this.squareSize.w}px`
         this.squareElement.style.height = `${this.squareSize.h}px`
         this.squareElement.style.left = `${this.squarePos.left}px`
-        this.squareElement.style.backgroundColor = `red`
+        this.squareElement.style.backgroundColor = 'red'
 
 
         this.gameScreen.appendChild(this.squareElement)

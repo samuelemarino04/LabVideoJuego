@@ -6,7 +6,7 @@ class EnemiesR {
 
         this.enemiesSize = {
             w: 200,
-            h: 80
+            h: 100
 
         }
 
@@ -34,7 +34,7 @@ class EnemiesR {
         this.enemiesElement.style.height = `${this.enemiesSize.h}px`
         this.enemiesElement.style.left = `${this.enemiesPos.left}px`
         this.enemiesElement.style.top = `${this.enemiesPos.top}px`
-        this.enemiesElement.src = 'img/german.png'
+        this.enemiesElement.src = 'img/IMG_9578.PNG'
 
 
 

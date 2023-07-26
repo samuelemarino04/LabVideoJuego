@@ -6,6 +6,14 @@
 body {
     display: flex;
     justify-content: center;
+    background-image: url('./img/IMG_9570.PNG');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.lifes {
+    display: flex;
 }
 
 #game-screen {

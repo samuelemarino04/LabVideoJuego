@@ -26,14 +26,14 @@ class Enemies {
 
     init() {
 
-        this.enemiesElement = document.createElement('div')
+        this.enemiesElement = document.createElement('img')
 
         this.enemiesElement.style.position = 'absolute'
         this.enemiesElement.style.width = `${this.enemiesSize.w}px`
         this.enemiesElement.style.height = `${this.enemiesSize.h}px`
         this.enemiesElement.style.left = `${this.enemiesPos.left}px`
         this.enemiesElement.style.top = `${this.enemiesPos.top}px`
-        this.enemiesElement.style.backgroundColor = `yellow`
+        this.enemiesElement.src = 'img/cargoship.png'
 
 
         this.gameScreen.appendChild(this.enemiesElement)
