@@ -16,7 +16,7 @@ class Enemies {
         }
 
         this.enemiesVel = {
-            left: 10,
+            left: 2,
             top: 0
         }
 

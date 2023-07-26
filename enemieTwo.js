@@ -2,7 +2,8 @@ class Enemies2 {
     constructor(gameScreen, gameSize, positionLeft, positionTop) {
         this.gameScreen = gameScreen
         this.gameSize = gameSize
-        this.enemiesShot = [];
+        this.enemiesShot = []
+        this.enemyLive = true
 
         this.enemiesSize = {
             w: 40,
@@ -17,7 +18,7 @@ class Enemies2 {
         }
 
         this.enemiesVel = {
-            left: 10,
+            left: 2,
             top: 0
         }
         this.counter = 0
@@ -53,7 +54,8 @@ class Enemies2 {
         }
 
         this.shootMove()
-        if (this.counter % 200 === 0) {
+
+        if (this.counter % 200 === 0 && this.enemyLive) {
             this.shoot()
 
         }
