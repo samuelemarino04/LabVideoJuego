@@ -72,6 +72,7 @@ class EnemiesBoss {
         this.enemiesShot.forEach(shot => shot.shotMove())
         this.clearShoot()
 
+
     }
 
     shoot() {
@@ -95,6 +96,7 @@ class EnemiesBoss {
         })
 
     }
+
 
 
 

@@ -1,6 +1,6 @@
 //creamos la clase Game 
 const Game = {
-
+    julit0: document.querySelector('#julito'),/* * */
     gameScreen: document.querySelector("#game-screen"),
     bodyScreen: document.querySelector("#body-screen"),
     gameSize: {
@@ -32,7 +32,7 @@ const Game = {
 
     //Metermos el fondo de juego por ahora solo es un color 
     changeBackground() {
-        this.gameScreen.style.backgroundColor = 'black'
+
     },
 
     //Llama las funciones implementadas
@@ -63,6 +63,7 @@ const Game = {
 
     //dibujamos el enemigo y el movimiento en pantalla,
     drawAll() {
+        this.soyUnTruhan()
         this.boss.move()
         this.bossCollition()
         this.clearenemyR()
@@ -98,7 +99,7 @@ const Game = {
         document.onkeyup = event => {
             switch (event.code) {
                 case this.keys.SPACE:
-                    console.log('-------->', this.enemyTotal)
+                    console.log('-------->', this.gameSize.h)
                     this.square.shoot()
 
                     break;
@@ -116,7 +117,7 @@ const Game = {
 
     // creacion de enemigo desde un array vacio
     createElements() {
-
+        this.background = new Background(this.gameScreen, this.gameSize)
         this.boss = new EnemiesBoss(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop)
         this.square = new Square(this.gameScreen, this.gameSize, this.keys, this.squareSize)
 
@@ -208,7 +209,7 @@ const Game = {
                     eachEnemy.enemiesPos.top < eachShot.shotPos.top + eachShot.shotSize.h &&
                     eachEnemy.enemiesSize.h + eachEnemy.enemiesPos.top > eachShot.shotPos.top
                 ) {
-                    console.log(this.playerLifes)
+
                     eachEnemy.enemyLive = false
 
                     eachEnemy.enemiesElement.remove()
@@ -235,6 +236,7 @@ const Game = {
             ) {
 
                 this.bossLife -= 1
+
                 if (this.bossLife === 0) {
                     this.boss.enemiesElement.remove()
                     this.gameWon()
@@ -249,9 +251,7 @@ const Game = {
     },
 
 
-    // clearBalas(){
 
-    // }
 
     playerCollision() {
         //Collision con los enemigos
@@ -280,15 +280,21 @@ const Game = {
 
 
                     this.playerLifes.forEach((eachLife) => {
+
                         eachLife.lifeElement.remove()
+
                     })
-                    this.playerLifes.pop()
+
 
 
                     eachShot.enemiesShotElement.remove()
+
                     eachEnemy.enemiesShot.splice(idx, 1)
+
                     if (this.playerLifes.length === 0) {
+
                         this.gameOver()
+
                     }
                 }
 
@@ -304,7 +310,7 @@ const Game = {
         this.enemiesArray3.forEach((eachEnemy) => {
 
             eachEnemy.enemiesShot.forEach((eachShot, idx) => {
-                //console.log("balas de enemigo", eachEnemy.enemiesShot)
+
 
                 if (this.square.squarePos.left < eachShot.shotPos.left + eachShot.shotSize.w &&
                     this.square.squarePos.left + this.square.squareSize.w > eachShot.shotPos.left &&
@@ -346,7 +352,7 @@ const Game = {
         this.enemiesArray.forEach((eachEnemy) => {
 
             eachEnemy.enemiesShot.forEach((eachShot, idx) => {
-                //console.log("balas de enemigo", eachEnemy.enemiesShot)
+
 
                 if (this.square.squarePos.left < eachShot.shotPos.left + eachShot.shotSize.w &&
                     this.square.squarePos.left + this.square.squareSize.w > eachShot.shotPos.left &&
@@ -397,7 +403,17 @@ const Game = {
 
 
 
+    soyUnTruhan() {
 
+        if (this.boss.enemiesPos.top === -400) {
+            console.log('------>', this.boss.enemiesPos.top)
+            this.julit0.play()
+
+        }
+
+
+
+    }
 
 }
 
