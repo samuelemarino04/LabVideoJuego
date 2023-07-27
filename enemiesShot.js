@@ -23,8 +23,8 @@ class Enemieshot {
 
         //Tamaño de la bala
         this.shotSize = {
-            w: 8,
-            h: 10
+            w: 15,
+            h: 40
         }
 
         //invocador que conecta el juego
@@ -35,10 +35,10 @@ class Enemieshot {
 
     //style del shot
     init() {
-        this.enemiesShotElement = document.createElement('div')
+        this.enemiesShotElement = document.createElement('img')
 
         this.enemiesShotElement.style.position = "absolute"
-        this.enemiesShotElement.style.backgroundColor = `blue`
+        this.enemiesShotElement.src = 'img/8c8b1d81151796e.png'
         this.enemiesShotElement.style.width = `${this.shotSize.w}px`
         this.enemiesShotElement.style.height = `${this.shotSize.h}px`
         this.enemiesShotElement.style.left = `${this.shotPos.left}px`

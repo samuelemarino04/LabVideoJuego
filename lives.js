@@ -1,18 +1,18 @@
 class Life {
-    constructor(bodyScreen, gameScreen, gameSize, lifeLeft) {
+    constructor(bodyScreen, gameScreen, gameSize, lifeLeft, lifeTop) {
         this.gameScreen = gameScreen
         this.gameSize = gameSize
         this.bodyScreen = bodyScreen
 
         this.lifeSize = {
-            w: 30,
-            h: 30
+            w: 50,
+            h: 50
 
         }
 
         this.lifePos = {
-            left: lifeLeft,
-            top: 0,
+            left: lifeLeft + 40,
+            top: lifeTop,
 
         }
         this.init()
@@ -24,12 +24,18 @@ class Life {
         this.lifeElement = document.createElement('img')
 
 
-        this.lifeElement.style.position = 'absolute'
+        this.lifeElement.style.position = 'fixed'
+        this.lifeElement.style.display = 'flex'
+
+
+
         this.lifeElement.style.width = `${this.lifeSize.w}px`
         this.lifeElement.style.height = `${this.lifeSize.h}px`
         this.lifeElement.style.left = `${this.lifePos.left}px`
         this.lifeElement.style.top = `${this.lifePos.top}px`
-        this.lifeElement.src = 'img/download.jpg'
+        this.lifeElement.style.marginLeft = '25px'
+
+        this.lifeElement.src = 'img/IMG_9596.PNG'
 
         this.bodyScreen.appendChild(this.lifeElement)
 

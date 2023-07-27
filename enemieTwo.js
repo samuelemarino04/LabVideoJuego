@@ -6,8 +6,8 @@ class Enemies2 {
         this.enemyLive = true
 
         this.enemiesSize = {
-            w: 40,
-            h: 40
+            w: 60,
+            h: 60
 
         }
 
@@ -28,14 +28,14 @@ class Enemies2 {
 
     init() {
 
-        this.enemiesElement = document.createElement('div')
+        this.enemiesElement = document.createElement('img')
 
         this.enemiesElement.style.position = 'absolute'
         this.enemiesElement.style.width = `${this.enemiesSize.w}px`
         this.enemiesElement.style.height = `${this.enemiesSize.h}px`
         this.enemiesElement.style.left = `${this.enemiesPos.left}px`
         this.enemiesElement.style.top = `${this.enemiesPos.top}px`
-        this.enemiesElement.style.backgroundColor = `green`
+        this.enemiesElement.src = 'img/6b07c25168b200e3d9b52976004356ea.png'
 
 
         this.gameScreen.appendChild(this.enemiesElement)

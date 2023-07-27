@@ -4,8 +4,8 @@ class Enemies {
         this.gameSize = gameSize
 
         this.enemiesSize = {
-            w: 40,
-            h: 40
+            w: 60,
+            h: 60
 
         }
 
@@ -33,7 +33,7 @@ class Enemies {
         this.enemiesElement.style.height = `${this.enemiesSize.h}px`
         this.enemiesElement.style.left = `${this.enemiesPos.left}px`
         this.enemiesElement.style.top = `${this.enemiesPos.top}px`
-        this.enemiesElement.src = 'img/cargoship.png'
+        this.enemiesElement.src = 'img/edbcf795e1d1c28408b3a386db91db9c.png'
 
 
         this.gameScreen.appendChild(this.enemiesElement)

@@ -1,5 +1,6 @@
 //creamos la clase Game 
 const Game = {
+    guardians: document.querySelector('#guardians'),
     julit0: document.querySelector('#julito'),/* * */
     gameScreen: document.querySelector("#game-screen"),
     bodyScreen: document.querySelector("#body-screen"),
@@ -22,13 +23,12 @@ const Game = {
     enemiesArray: [],
     framesCounter: 0,
     bossLife: 50,
-    numLifes: [0, 0, 0],
     playerLifes: [],
     spaceEnemy: 55,
     positionLeft: undefined,
     positionTop: undefined,
     lifeLeft: undefined,
-    keys: { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', SPACE: 'Space' },
+    keys: { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', SPACE: 'Space', ENTER: 'e' },
 
     //Metermos el fondo de juego por ahora solo es un color 
     changeBackground() {
@@ -38,7 +38,6 @@ const Game = {
     //Llama las funciones implementadas
     init() {
         this.setDimensions()
-        this.start()
         this.changeBackground()
 
     },
@@ -99,7 +98,7 @@ const Game = {
         document.onkeyup = event => {
             switch (event.code) {
                 case this.keys.SPACE:
-                    console.log('-------->', this.gameSize.h)
+                    console.log('-------->', this.boss)
                     this.square.shoot()
 
                     break;
@@ -108,7 +107,7 @@ const Game = {
     },
 
     playerDie() {
-        if (playerLifes <= 0) {
+        if (this.playerLifes.length === 0) {
             this.gameOver()
         } else if (this.bossLife <= 0) {
             this.gameWon()
@@ -121,15 +120,10 @@ const Game = {
         this.boss = new EnemiesBoss(this.gameScreen, this.gameSize, this.positionLeft, this.positionTop)
         this.square = new Square(this.gameScreen, this.gameSize, this.keys, this.squareSize)
 
+        this.playerLifes.push(new Life(this.gameScreen, this.gameSize, 10, 20))
+        this.playerLifes.push(new Life(this.gameScreen, this.gameSize, 40, 50))
+        this.playerLifes.push(new Life(this.gameScreen, this.gameSize, 70, 80))
 
-        //createLives
-        for (let i = 0; i < this.numLifes.length; i++) {
-            if (this.numLifes[i] === 0) {
-                this.lifeLeft = i * 50
-
-                this.playerLifes.push(new Life(this.gameScreen, this.gameSize, this.lifeLeft))
-            }
-        }
 
 
         //createEnemies
@@ -225,14 +219,14 @@ const Game = {
 
 
     bossCollition() {
-        //collision balas con enemigos
+
 
         this.square.shots.forEach((eachShot, index) => {
 
-            if (this.boss.enemiesPos.left < eachShot.shotPos.left + eachShot.shotSize.w &&
-                this.boss.enemiesPos.left + this.boss.enemiesSize.w > eachShot.shotPos.left &&
-                this.boss.enemiesPos.top < eachShot.shotPos.top + eachShot.shotSize.h &&
-                this.boss.enemiesSize.h + this.boss.enemiesPos.top > eachShot.shotPos.top
+            if (this.boss.enemiesPos.left <= eachShot.shotPos.left + eachShot.shotSize.w &&
+                this.boss.enemiesPos.left + this.boss.enemiesSize.w >= eachShot.shotPos.left &&
+                this.boss.enemiesPos.top <= eachShot.shotPos.top + eachShot.shotSize.h &&
+                this.boss.enemiesSize.h + this.boss.enemiesPos.top >= eachShot.shotPos.top
             ) {
 
                 this.bossLife -= 1
@@ -279,11 +273,14 @@ const Game = {
                 ) {
 
 
-                    this.playerLifes.forEach((eachLife) => {
-
+                    this.playerLifes.forEach((eachLife, idx) => {
+                        console.log(`vidas ahora:${this.playerLifes.length}`);
+                        this.playerLifes.splice(idx, 1)
                         eachLife.lifeElement.remove()
-
+                        console.log(`vidas despues:${this.playerLifes.length}`)
                     })
+
+
 
 
 
@@ -291,11 +288,7 @@ const Game = {
 
                     eachEnemy.enemiesShot.splice(idx, 1)
 
-                    if (this.playerLifes.length === 0) {
 
-                        this.gameOver()
-
-                    }
                 }
 
 
@@ -319,13 +312,15 @@ const Game = {
                 ) {
 
 
-                    this.playerLifes.pop()
-                    eachShot.enemiesShotElement.remove()
+                    // this.playerLifes.pop()
+                    // this.playerLifes.forEach((eachLife) => {
+                    //     eachLife.lifeElement.remove()
+                    // })
 
                     eachEnemy.enemiesShot.splice(idx, 1)
-                    if (this.playerLifes === 0) {
-                        this.gameOver()
-                    }
+                    eachShot.enemiesShotElement.remove()
+
+
                 }
 
 
@@ -335,11 +330,41 @@ const Game = {
 
     },
 
+    gameoverBulletBoss() {
+
+
+
+        this.boss.enemiesShot.forEach((eachShot, idx) => {
+
+
+            if (this.square.squarePos.left < eachShot.shotPos.left + eachShot.shotSize.w &&
+                this.square.squarePos.left + this.square.squareSize.w > eachShot.shotPos.left &&
+                this.square.squarePos.top < eachShot.shotPos.top - eachShot.shotSize.h &&
+                this.square.squareSize.h - this.square.squarePos.top < eachShot.shotPos.top
+            ) {
+
+
+                // this.playerLifes.pop()
+                // this.playerLifes.forEach((eachLife) => {
+                //     eachLife.lifeElement.remove()
+                // })
+                eachShot.enemiesShotElement.remove()
+                this.boss.enemiesShot.splice(idx, 1)
+
+            }
+
+
+        })
+
+
+
+    },
 
 
 
     gameLoop() {
-
+        this.playerDie()
+        this.gameoverBulletBoss()
         this.gameoverBulletGerman()
         this.gameoverBullet()
         this.isEnemyCollision()
@@ -347,42 +372,11 @@ const Game = {
         window.requestAnimationFrame(() => this.gameLoop())
     },
 
-    gameoverBulletBoos() {
-
-        this.enemiesArray.forEach((eachEnemy) => {
-
-            eachEnemy.enemiesShot.forEach((eachShot, idx) => {
-
-
-                if (this.square.squarePos.left < eachShot.shotPos.left + eachShot.shotSize.w &&
-                    this.square.squarePos.left + this.square.squareSize.w > eachShot.shotPos.left &&
-                    this.square.squarePos.top < eachShot.shotPos.top - eachShot.shotSize.h &&
-                    this.square.squareSize.h - this.square.squarePos.top < eachShot.shotPos.top
-                ) {
-
-
-                    this.playerLifes = this.playerLifes - 1
-                    eachShot.enemiesShotElement.remove()
-
-                    eachEnemy.enemiesShot.splice(idx, 1)
-                    if (this.playerLifes === 0) {
-                        this.gameOver()
-                    }
-                }
-
-
-            })
-
-        })
-
-    },
 
     clearenemyR() {
 
         this.enemiesArray3.forEach((eachEnemy) => {
-
             if (eachEnemy.enemiesPos.left > this.gameSize.w) {
-
                 eachEnemy.enemiesElement.remove()
                 this.enemiesArray3.pop()
             }
@@ -390,7 +384,6 @@ const Game = {
     },
 
     //alerta de la derrota
-
     gameOver() {
 
         console.log('ooooooh sooo sad!!')
@@ -404,17 +397,18 @@ const Game = {
 
 
     soyUnTruhan() {
-
-        if (this.boss.enemiesPos.top === -400) {
-            console.log('------>', this.boss.enemiesPos.top)
+        if (this.boss.enemiesPos.top > -1800 && this.boss.enemiesPos.top < -500) {
+            this.guardians.play()
+        }
+        else if (this.boss.enemiesPos.top === -500) {
+            this.guardians.pause()
+        }
+        else if (this.boss.enemiesPos.top === -400)
             this.julit0.play()
 
-        }
-
-
-
-    }
+    },
 
 }
+
 
 

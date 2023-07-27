@@ -7,13 +7,13 @@ class Square {
 
         //Tamaño del player
         this.squareSize = {
-            w: 110,
-            h: 30
+            w: 60,
+            h: 100
         }
         //Posiciòn inicial del player
         this.squarePos = {
             left: gameSize.w / 5,
-            top: gameSize.h - this.squareSize.h - 20
+            top: gameSize.h - this.squareSize.h
 
         }
         //Velocidad del player
@@ -33,13 +33,14 @@ class Square {
 
     init() {
 
-        this.squareElement = document.createElement('div')
+        this.squareElement = document.createElement('img')
 
         this.squareElement.style.position = "absolute"
         this.squareElement.style.width = `${this.squareSize.w}px`
         this.squareElement.style.height = `${this.squareSize.h}px`
         this.squareElement.style.left = `${this.squarePos.left}px`
-        this.squareElement.style.backgroundColor = 'red'
+        this.squareElement.style.backgroundImage = 'url(vsls:/img/gatojeje.gif)';
+        this.squareElement.style.backgroundSize = 'cover'
 
 
         this.gameScreen.appendChild(this.squareElement)
