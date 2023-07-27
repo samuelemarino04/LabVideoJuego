@@ -17,7 +17,7 @@ class EnemiesR {
         }
 
         this.enemiesVel = {
-            left: 3,
+            left: 1.5,
             top: 0
         }
         this.counter = 0

@@ -1,8 +1,10 @@
 //creamos la clase Game 
 const Game = {
     imgYlo: document.querySelector('#winL'),
+    imgYElo: document.querySelector('#loserL'),
     guardians: document.querySelector('#guardians'),
     julit0: document.querySelector('#julito'),/* * */
+    tikiTiki: document.querySelector('#tikiTiki'),
     gameScreen: document.querySelector("#game-screen"),
     bodyScreen: document.querySelector("#body-screen"),
     gameSize: {
@@ -67,6 +69,7 @@ const Game = {
         this.enemiesArray1.forEach(enemy => enemy.move())
         this.enemiesArray2.forEach(enemy => enemy.move())
         this.enemiesArray3.forEach(enemy => enemy.move())
+        this.tiki()
 
     },
 
@@ -333,12 +336,16 @@ const Game = {
     //alerta de la derrota
     gameOver() {
 
-        alert('ooooooh sooo sad!!')
+        this.imgYElo.style.display = 'block'
+        this.imgYElo.style.width = `${window.innerWidth}px`
+        this.imgYElo.style.height = `${window.innerHeight}px`
+        this.imgYElo.style.backgroundImage = 'url(img/loser.PNG)'
+        this.imgYElo.style.backgroundSize = '100% 100%'
+
     },
 
     gameWon() {
         this.imgYlo.style.display = 'block'
-
         this.imgYlo.style.width = `${window.innerWidth}px`
         this.imgYlo.style.height = `${window.innerHeight}px`
         this.imgYlo.style.backgroundImage = 'url(./img/jej.PNG)'
@@ -355,6 +362,15 @@ const Game = {
         else if (this.boss.enemiesPos.top === -400)
             this.julit0.play()
     },
+
+    tiki() {
+        this.enemiesArray3.forEach((eachElement) => {
+            if (eachElement.enemiesPos.left === 0) {
+                this.tikiTiki.play()
+            }
+        })
+
+    }
 }
 
 

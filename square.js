@@ -7,7 +7,7 @@ class Square {
 
         //Tamaño del player
         this.squareSize = {
-            w: 95,
+            w: 100,
             h: 100
         }
         //Posiciòn inicial del player
