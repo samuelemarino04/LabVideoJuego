@@ -7,7 +7,7 @@ class Square {
 
         //Tamaño del player
         this.squareSize = {
-            w: 60,
+            w: 95,
             h: 100
         }
         //Posiciòn inicial del player
@@ -33,7 +33,7 @@ class Square {
 
     init() {
 
-        this.squareElement = document.createElement('img')
+        this.squareElement = document.createElement('gif')
 
         this.squareElement.style.position = "absolute"
         this.squareElement.style.width = `${this.squareSize.w}px`
