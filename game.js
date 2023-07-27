@@ -1,5 +1,6 @@
 //creamos la clase Game 
 const Game = {
+    imgYlo: document.querySelector('#winL'),
     guardians: document.querySelector('#guardians'),
     julit0: document.querySelector('#julito'),/* * */
     gameScreen: document.querySelector("#game-screen"),
@@ -332,11 +333,16 @@ const Game = {
     //alerta de la derrota
     gameOver() {
 
-        console.log('ooooooh sooo sad!!')
+        alert('ooooooh sooo sad!!')
     },
 
     gameWon() {
-        alert('congrants,i am soo happy!!')
+        this.imgYlo.style.display = 'block'
+
+        this.imgYlo.style.width = `${window.innerWidth}px`
+        this.imgYlo.style.height = `${window.innerHeight}px`
+        this.imgYlo.style.backgroundImage = 'url(./img/jej.PNG)'
+        this.imgYlo.style.backgroundSize = '100% 100%'
     },
 
     soyUnTruhan() {

@@ -43,6 +43,7 @@ class Square {
         this.squareElement.style.backgroundSize = 'cover'
 
 
+
         this.gameScreen.appendChild(this.squareElement)
     }
 
