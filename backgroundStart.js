@@ -11,7 +11,7 @@ backgroundElementStar.style.position = "absolute"
 backgroundElementStar.style.display = 'block'
 backgroundElementStar.style.width = `${window.innerWidth}px`
 backgroundElementStar.style.height = `${window.innerHeight}px`
-backgroundElementStar.style.backgroundImage = 'url(./img/IMG_9592.PNG)'
+backgroundElementStar.style.backgroundImage = 'url(img/Loquetuquiera.PNG)'
 backgroundElementStar.style.backgroundSize = '100% 100%'
 
 

@@ -12,7 +12,7 @@ class EnemiesBoss {
 
         this.enemiesPos = {
             left: gameSize.w / 9,
-            top: -1800,  //gameSize.h - gameSize.h + 40,
+            top: -2400,  //gameSize.h - gameSize.h + 40,
 
         }
 

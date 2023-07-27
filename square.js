@@ -39,7 +39,7 @@ class Square {
         this.squareElement.style.width = `${this.squareSize.w}px`
         this.squareElement.style.height = `${this.squareSize.h}px`
         this.squareElement.style.left = `${this.squarePos.left}px`
-        this.squareElement.style.backgroundImage = 'url(vsls:/img/gatojeje.gif)';
+        this.squareElement.style.backgroundImage = 'url(img/propeller-pepe.gif)';
         this.squareElement.style.backgroundSize = 'cover'
 
 
