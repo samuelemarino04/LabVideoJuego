@@ -31,7 +31,7 @@ const Game = {
     positionLeft: undefined,
     positionTop: undefined,
     lifeLeft: undefined,
-    keys: { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', SPACE: 'Space', ENTER: 'e' },
+    keys: { LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', SPACE: 'Space', ENTER: 'e', keyV: 'v' },
 
     //Metermos el fondo de juego por ahora solo es un color 
     changeBackground() { },
@@ -355,6 +355,7 @@ const Game = {
     soyUnTruhan() {
         if (this.boss.enemiesPos.top > -2400 && this.boss.enemiesPos.top < -500) {
             this.guardians.play()
+            this.guardians.volume = 0.6
         }
         else if (this.boss.enemiesPos.top === -500) {
             this.guardians.pause()
