@@ -20,13 +20,8 @@ document.body.appendChild(backgroundElementStar)
 addEventListener('keydown', (event) => {
     switch (event.code) {
         case 'Enter':
-            document.querySelector('#laVaca').pause()
             backgroundElementStar.style.display = 'none'
             Game.start()
-            break;
-
-        case 'KeyV':
-            document.querySelector('#laVaca').play()
             break;
 
     }

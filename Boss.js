@@ -34,7 +34,7 @@ class EnemiesBoss {
         this.enemiesElement.style.height = `${this.enemiesSize.h}px`
         this.enemiesElement.style.left = `${this.enemiesPos.left}px`
         this.enemiesElement.style.top = `${this.enemiesPos.top}px`
-        this.enemiesElement.src = 'img/IMG_9576 (1).png'
+        this.enemiesElement.src = 'img/6b07c25168b200e3d9b52976004356ea.png'
 
 
 

@@ -69,7 +69,6 @@ const Game = {
         this.enemiesArray1.forEach(enemy => enemy.move())
         this.enemiesArray2.forEach(enemy => enemy.move())
         this.enemiesArray3.forEach(enemy => enemy.move())
-        this.tiki()
 
     },
 
@@ -353,25 +352,11 @@ const Game = {
     },
 
     soyUnTruhan() {
-        if (this.boss.enemiesPos.top > -2400 && this.boss.enemiesPos.top < -500) {
+        if (this.boss.enemiesPos.top > -2400) {
             this.guardians.play()
             this.guardians.volume = 0.6
         }
-        else if (this.boss.enemiesPos.top === -500) {
-            this.guardians.pause()
-        }
-        else if (this.boss.enemiesPos.top === -400)
-            this.julit0.play()
     },
-
-    tiki() {
-        this.enemiesArray3.forEach((eachElement) => {
-            if (eachElement.enemiesPos.left === 0) {
-                this.tikiTiki.play()
-            }
-        })
-
-    }
 }
 
 
